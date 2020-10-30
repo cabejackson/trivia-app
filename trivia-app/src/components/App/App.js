@@ -21,7 +21,8 @@ export default class App extends Component {
   renderMainRoutes() {
     return (
       <>
-        <Route exact path="/" component={Game} />
+        <h2>hiii</h2>
+        {/* <Route exact path="/" component={Landing} /> */}
         {/* <Route exact path="/game" component={Game} /> */}
       </>
     );
