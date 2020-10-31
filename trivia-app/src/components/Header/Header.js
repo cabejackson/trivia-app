@@ -1,11 +1,13 @@
-import React, { Link } from 'react';
+import React from 'react';
+import { Route, Link, Redirect } from "react-router-dom";
+import "./Header.css";
+
 
 const Header = () => {
     return (
         <>
-            <h1>header!</h1>
-            {/* <nav>
-                <h1 className="welcome">Lets Play Trivia <br /> & Books!</h1>
+            <nav>
+                <h1 className="welcome">Lets Play Trivia !</h1>
 
                 <ul className="navBar__ul">
                     <li>
@@ -18,7 +20,7 @@ const Header = () => {
 
 
                 </ul>
-            </nav> */}
+            </nav>
         </>
     )
 }
