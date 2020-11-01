@@ -4,7 +4,7 @@ import Game from "../Game/Game";
 import Landing from "../Landing/Landing";
 import ApiContext from "../../contexts/ApiContext";
 import Header from "../Header/Header";
-
+import Trivia from "../Questions/Questions";
 
 
 export default class App extends Component {
@@ -22,7 +22,8 @@ export default class App extends Component {
     return (
       <>
         <Route exact path="/" component={Landing} />
-        <Route exact path="/game" component={Game} />
+        {/* <Route exact path="/game" component={Game} /> */}
+        <Route exact path="/game" component={Trivia} />
       </>
     );
   }
@@ -33,15 +34,17 @@ export default class App extends Component {
       test: 0
     }
     return (
-      <ApiContext.Provider value={value}>
+      <div className="all">
+        <ApiContext.Provider value={value}>
 
-        <div className="App">
-          <header className="App__header">
-            <Header />
-          </header>
-          <main className="App__main"> {this.renderMainRoutes()} </main>
-        </div>
-      </ApiContext.Provider>
+          <div className="App">
+            <header className="App__header">
+              <Header />
+            </header>
+            <main className="App__main"> {this.renderMainRoutes()} </main>
+          </div>
+        </ApiContext.Provider>
+      </div>
 
     )
   }

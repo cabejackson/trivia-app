@@ -1,0 +1,47 @@
+h1 {
+    margin: 0px;
+}
+
+h2,
+h3,
+p {
+    color: black
+}
+
+.the__questions {
+    background-color: bisque;
+}
+
+
+.questions__button {
+    order: 1px solid #aaa;
+    font-size: 1.1em;
+    padding: 8px 12px;
+
+    /* padding: 10px 16px; */
+    border: solid #0A0908;
+    border-radius: 4px;
+
+    background-color: #419D78;
+    color: #0A0908;
+    font-weight: bold;
+
+    font-family: 'Markazi Text',
+        serif;
+    font-size: 20px;
+    margin: auto;
+    align-content: left;
+
+    flex-direction: column;
+
+
+}
+
+.questions__button a {
+    text-decoration: none;
+    color: #0A0908;
+}
+
+.questions__button:hover {
+    background-color: #81B8D9
+}

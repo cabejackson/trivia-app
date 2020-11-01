@@ -5,7 +5,7 @@ import "./Header.css";
 
 const Header = () => {
     return (
-        <>
+        <div className="header__back">
             <nav>
                 <h1 className="welcome">Lets Play Trivia !</h1>
 
@@ -21,7 +21,7 @@ const Header = () => {
 
                 </ul>
             </nav>
-        </>
+        </div>
     )
 }
 

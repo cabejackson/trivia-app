@@ -1,64 +1,108 @@
 import React, { useState } from 'react';
+import "./Questions.css";
 
-export default function App() {
+export default function Trivia() {
+
+
+
     const questions = [
         {
-            questionText: 'What is the capital of France?',
+            questionText: 'What was Tandem previous name?',
             answerOptions: [
-                { answerText: 'New York', isCorrect: false },
-                { answerText: 'London', isCorrect: false },
-                { answerText: 'Paris', isCorrect: true },
-                { answerText: 'Dublin', isCorrect: false },
+                { answerText: 'Tandem', isCorrect: false },
+                { answerText: 'Burger Shack', isCorrect: false },
+                { answerText: 'Devmynd', isCorrect: true },
+                { answerText: 'Extraordinary Humans', isCorrect: false },
             ],
         },
         {
-            questionText: 'Who is CEO of Tesla?',
+            questionText: `In Shakespeare's play Julius Caesar, Caesar's last words were...`,
             answerOptions: [
-                { answerText: 'Jeff Bezos', isCorrect: false },
-                { answerText: 'Elon Musk', isCorrect: true },
-                { answerText: 'Bill Gates', isCorrect: false },
-                { answerText: 'Tony Stark', isCorrect: false },
+                { answerText: 'Iacta alea est!', isCorrect: false },
+                { answerText: 'Vidi, vini, vici', isCorrect: false },
+                { answerText: 'Et tu, Brute?', isCorrect: true },
+                { answerText: 'Aegri somnia vana', isCorrect: false },
             ],
         },
         {
-            questionText: 'The iPhone was created by which company?',
+            questionText: 'A group of tigers are referred to as:',
             answerOptions: [
-                { answerText: 'Apple', isCorrect: true },
-                { answerText: 'Intel', isCorrect: false },
-                { answerText: 'Amazon', isCorrect: false },
-                { answerText: 'Microsoft', isCorrect: false },
+                { answerText: 'Chowder', isCorrect: false },
+                { answerText: 'Pride', isCorrect: false },
+                { answerText: 'Ambush', isCorrect: true },
+                { answerText: 'Destruction', isCorrect: false },
             ],
         },
         {
-            questionText: 'How many Harry Potter books are there?',
+            questionText: 'What is the top speed an average cat can travel?',
             answerOptions: [
-                { answerText: '1', isCorrect: false },
-                { answerText: '4', isCorrect: false },
-                { answerText: '6', isCorrect: false },
-                { answerText: '7', isCorrect: true },
+                { answerText: '42 mph', isCorrect: false },
+                { answerText: '13 mph', isCorrect: false },
+                { answerText: '31 mph', isCorrect: true },
+                { answerText: '9 mph', isCorrect: false },
             ],
         },
-    ];
+    ].sort(
+        () => 0.5 - Math.random()
+    );
 
+    //state objects/ state variables
+    const [currentQuestion, setCurrentQuestion] = useState(0) //useState(0) makes it start at the beginning of the array
+
+    const [showScore, setShowScore] = useState(false) //boolean instead of number
+
+    const [score, setScore] = useState(0)
+    //why put const?
+    //changes the current question whenever button is clicked
+    const handleAnswerButtonClick = (isCorrect) => {
+
+        if (isCorrect === true) {
+            // alert("you got it!")
+            setScore(score + 1);
+        }
+        if (isCorrect === false) {
+            //alert("yikes almost tho!")
+            console.log(questions[1].answerText)
+            //alert(questions[currentQuestion].answerText)
+        }
+        // create variable to increments by 1
+        const nextQuestion = currentQuestion + 1;
+        //if there's still questions do display the questions
+        if (nextQuestion < questions.length) {
+            //changes the state object to whatever the next question is
+            setCurrentQuestion(nextQuestion)
+        }
+        //else show score
+        else {
+            setShowScore(true)
+            console.log(`thanks for finishing!`) //maybe component for end of quiz or results
+
+        }
+
+    }
+    console.log("outside", questions[0].questionText)
+    //wrapped in ternary like the login component from capstone
     return (
-        <div className='app'>
+        <div className='the__questions'>
             {/* HINT: replace "false" with logic to display the 
       score when the user has answered all the questions */}
-            {false ? (
-                <div className='score-section'>You scored 1 out of {questions.length}</div>
+
+            {/* <p>{questions[0].questionText}</p> */}
+            {showScore ? (
+                <div className='score-section'>You scored {score} out of {questions.length}</div>
             ) : (
                     <>
                         <div className='question-section'>
                             <div className='question-count'>
-                                <span>Question 1</span>/{questions.length}
+                                <span>Question {currentQuestion + 1}</span>/{questions.length}
                             </div>
-                            <div className='question-text'>{questions[0].questionText}</div>
+
+                            {/* <div className='question-text'>{questions[currentQuestion].questionText}</div> */}
+                            <div className='question-text'>{questions[currentQuestion].questionText}</div>
                         </div>
                         <div className='answer-section'>
-                            <button>Answer 1</button>
-                            <button>Answer 2</button>
-                            <button>Answer 3</button>
-                            <button>Answer 4</button>
+                            {questions[currentQuestion].answerOptions.map((answerOption, key) => <div className="question__options"><button className="questions__button" key={key} onClick={() => handleAnswerButtonClick(answerOption.isCorrect)}>{answerOption.answerText}</button><br /></div>)}
+
                         </div>
                     </>
                 )}
