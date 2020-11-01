@@ -23,8 +23,8 @@ p {
     background-size: cover;
     /* background-position: right 100% bottom 0%; */
     /* background-position: right 30% bottom 100%; */
-    /* background-position: center; */
-    background-position: 50% 70%;
+    background-position: center;
+    /* background-position: 50% 70%; */
     background-repeat: no-repeat;
 }
 

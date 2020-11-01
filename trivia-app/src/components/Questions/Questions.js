@@ -14,6 +14,9 @@ export default function Trivia() {
                 { answerText: 'Devmynd', isCorrect: true },
                 { answerText: 'Extraordinary Humans', isCorrect: false },
             ],
+            correct: 'Devmynd',
+
+
         },
         {
             questionText: `In Shakespeare's play Julius Caesar, Caesar's last words were...`,
@@ -23,6 +26,9 @@ export default function Trivia() {
                 { answerText: 'Et tu, Brute?', isCorrect: true },
                 { answerText: 'Aegri somnia vana', isCorrect: false },
             ],
+            correct: 'Devmynd',
+
+
         },
         {
             questionText: 'A group of tigers are referred to as:',
@@ -32,6 +38,8 @@ export default function Trivia() {
                 { answerText: 'Ambush', isCorrect: true },
                 { answerText: 'Destruction', isCorrect: false },
             ],
+            correct: 'Devmynd',
+
         },
         {
             questionText: 'What is the top speed an average cat can travel?',
@@ -41,10 +49,14 @@ export default function Trivia() {
                 { answerText: '31 mph', isCorrect: true },
                 { answerText: '9 mph', isCorrect: false },
             ],
+            correct: 'Devmynd',
+
         },
-    ].sort(
-        () => 0.5 - Math.random()
-    );
+    ]
+
+    // .sort(
+    //     () => 0.5 - Math.random()
+    // );
 
     //state objects/ state variables
     const [currentQuestion, setCurrentQuestion] = useState(0) //useState(0) makes it start at the beginning of the array
@@ -52,19 +64,27 @@ export default function Trivia() {
     const [showScore, setShowScore] = useState(false) //boolean instead of number
 
     const [score, setScore] = useState(0)
-    //why put const?
+
     //changes the current question whenever button is clicked
     const handleAnswerButtonClick = (isCorrect) => {
-
+        // const correct = questions[answerOptions].correct
         if (isCorrect === true) {
-            // alert("you got it!")
+            alert("you got it!")
             setScore(score + 1);
         }
         if (isCorrect === false) {
             //alert("yikes almost tho!")
-            console.log(questions[1].answerText)
+            //alert("That was incorrect. The correct answer is " + correctAnswer)
+            alert(`yikes almost tho! The correct answer is ${JSON.stringify(questions[currentQuestion].correct)}`)
+            // console.log(questions[1].answerText)
+            console.log(`yikes almost tho! The correct answer is ${JSON.stringify(questions[currentQuestion].correct)}`)
             //alert(questions[currentQuestion].answerText)
+
         }
+
+
+
+
         // create variable to increments by 1
         const nextQuestion = currentQuestion + 1;
         //if there's still questions do display the questions
@@ -80,7 +100,7 @@ export default function Trivia() {
         }
 
     }
-    console.log("outside", questions[0].questionText)
+    // console.log("outside", questions[0].questionText)
     //wrapped in ternary like the login component from capstone
     return (
         <div className='the__questions'>
@@ -101,7 +121,7 @@ export default function Trivia() {
                             <div className='question-text'>{questions[currentQuestion].questionText}</div>
                         </div>
                         <div className='answer-section'>
-                            {questions[currentQuestion].answerOptions.map((answerOption, key) => <div className="question__options"><button className="questions__button" key={key} onClick={() => handleAnswerButtonClick(answerOption.isCorrect)}>{answerOption.answerText}</button><br /></div>)}
+                            {questions[currentQuestion].answerOptions.map((answerOption, key) => <div key={key} className="question__options"><button className="questions__button" key={key} onClick={() => handleAnswerButtonClick(answerOption.isCorrect)}>{answerOption.answerText}</button><br /></div>)}
 
                         </div>
                     </>
